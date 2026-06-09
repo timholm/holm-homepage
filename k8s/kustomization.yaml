@@ -8,6 +8,6 @@ resources:
 configMapGenerator:
 - name: homepage-site
   files:
-  - index.html=../site/index.html
+  - index.html
 generatorOptions:
   disableNameSuffixHash: false
