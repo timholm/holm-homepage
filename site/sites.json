@@ -1,0 +1,457 @@
+[
+  {
+    "url": "https://element.holm.chat",
+    "cat": "comms",
+    "name": "Element",
+    "desc": "Matrix client",
+    "status": "ok"
+  },
+  {
+    "url": "https://cinny.holm.chat",
+    "cat": "comms",
+    "name": "Cinny",
+    "desc": "Alternate Matrix client",
+    "status": "ok"
+  },
+  {
+    "url": "https://matrix.holm.chat",
+    "cat": "comms",
+    "name": "Continuwuity",
+    "desc": "Matrix homeserver",
+    "status": "ok"
+  },
+  {
+    "url": "https://matrix.holm.team",
+    "cat": "comms",
+    "name": "matrix-holm",
+    "desc": "Matrix homeserver (holm.team)",
+    "status": "ok"
+  },
+  {
+    "url": "https://call.holm.chat",
+    "cat": "comms",
+    "name": "Element Call",
+    "desc": "Voice/video calls",
+    "status": "ok"
+  },
+  {
+    "url": "https://snikket.holm.chat",
+    "cat": "comms",
+    "name": "Snikket",
+    "desc": "XMPP admin",
+    "status": "ok"
+  },
+  {
+    "url": "https://cheogram.holm.chat",
+    "cat": "comms",
+    "name": "Cheogram",
+    "desc": "XMPP web client",
+    "status": "ok"
+  },
+  {
+    "url": "https://signal.holm.chat",
+    "cat": "comms",
+    "name": "Signal Web",
+    "desc": "Signal-relay frontend",
+    "status": "ok"
+  },
+  {
+    "url": "https://nostr.holm.chat",
+    "cat": "comms",
+    "name": "Strfry",
+    "desc": "Nostr relay",
+    "status": "ok"
+  },
+  {
+    "url": "https://groups.holm.chat",
+    "cat": "comms",
+    "name": "Snikket groups",
+    "desc": "Group chat",
+    "status": "ok"
+  },
+  {
+    "url": "https://livekit.holm.chat",
+    "cat": "comms",
+    "name": "LiveKit",
+    "desc": "Realtime audio/video",
+    "status": "ok"
+  },
+  {
+    "url": "https://holm.community",
+    "cat": "fediverse",
+    "name": "Mastodon",
+    "desc": "Microblog",
+    "status": "ok"
+  },
+  {
+    "url": "https://holm.video",
+    "cat": "fediverse",
+    "name": "PeerTube",
+    "desc": "Federated video",
+    "status": "ok"
+  },
+  {
+    "url": "https://loops.holm.video",
+    "cat": "fediverse",
+    "name": "Loops",
+    "desc": "Short-form video",
+    "status": "ok"
+  },
+  {
+    "url": "https://live.holm.video",
+    "cat": "fediverse",
+    "name": "Owncast",
+    "desc": "Live streaming",
+    "status": "ok"
+  },
+  {
+    "url": "https://holm.photo",
+    "cat": "fediverse",
+    "name": "Pixelfed",
+    "desc": "Federated photos",
+    "status": "ok"
+  },
+  {
+    "url": "https://lemmy.holm.community",
+    "cat": "fediverse",
+    "name": "Lemmy",
+    "desc": "Federated forum",
+    "status": "ok"
+  },
+  {
+    "url": "https://news.holm.community",
+    "cat": "fediverse",
+    "name": "News",
+    "desc": "Fallacy tracker",
+    "status": "ok"
+  },
+  {
+    "url": "https://relay.holm.chat",
+    "cat": "fediverse",
+    "name": "AP Relay",
+    "desc": "ActivityPub relay",
+    "status": "ok"
+  },
+  {
+    "url": "https://fedi-studio.holm.community",
+    "cat": "fediverse",
+    "name": "Fedi Studio",
+    "desc": "Federation studio",
+    "status": "ok"
+  },
+  {
+    "url": "https://apps.holm.team",
+    "cat": "fediverse",
+    "name": "Fedi Dashboard",
+    "desc": "Sub-apps directory",
+    "status": "ok"
+  },
+  {
+    "url": "https://holos.holm.team",
+    "cat": "fediverse",
+    "name": "Holos Discover",
+    "desc": "Discovery frontend",
+    "status": "ok"
+  },
+  {
+    "url": "https://hunter.holm.team",
+    "cat": "fediverse",
+    "name": "Fedi Hunter",
+    "desc": "Hunter dashboard",
+    "status": "ok"
+  },
+  {
+    "url": "https://docs.holm.community",
+    "cat": "fediverse",
+    "name": "Docs",
+    "desc": "Federation docs",
+    "status": "ok"
+  },
+  {
+    "url": "https://api.holm.community",
+    "cat": "fediverse",
+    "name": "Fedi API",
+    "desc": "Discovery API",
+    "status": "ok"
+  },
+  {
+    "url": "https://memory.holm.team",
+    "cat": "fediverse",
+    "name": "Fedi Memory",
+    "desc": "Memory service",
+    "status": "ok"
+  },
+  {
+    "url": "https://photos.holm.team",
+    "cat": "media",
+    "name": "Immich",
+    "desc": "Photo library",
+    "status": "ok"
+  },
+  {
+    "url": "https://jellyfin.holm.team",
+    "cat": "media",
+    "name": "Jellyfin",
+    "desc": "Media server",
+    "status": "ok"
+  },
+  {
+    "url": "https://audiobooks.holm.team",
+    "cat": "media",
+    "name": "Audiobookshelf",
+    "desc": "Audiobooks + podcasts",
+    "status": "ok"
+  },
+  {
+    "url": "https://music.holm.team",
+    "cat": "media",
+    "name": "Navidrome",
+    "desc": "Music server",
+    "status": "ok"
+  },
+  {
+    "url": "https://tube.holm.team",
+    "cat": "media",
+    "name": "TubeArchivist",
+    "desc": "YouTube archive",
+    "status": "ok"
+  },
+  {
+    "url": "https://ebooks.holm.team",
+    "cat": "media",
+    "name": "Calibre-Web",
+    "desc": "Ebook library",
+    "status": "ok"
+  },
+  {
+    "url": "https://search.holm.community",
+    "cat": "tools",
+    "name": "SearXNG",
+    "desc": "Meta search",
+    "status": "ok"
+  },
+  {
+    "url": "https://rss.holm.team",
+    "cat": "tools",
+    "name": "Miniflux",
+    "desc": "RSS reader",
+    "status": "ok"
+  },
+  {
+    "url": "https://bookmarks.holm.team",
+    "cat": "tools",
+    "name": "Karakeep",
+    "desc": "Bookmarks",
+    "status": "ok"
+  },
+  {
+    "url": "https://forms.holm.team",
+    "cat": "tools",
+    "name": "Formhub",
+    "desc": "Forms",
+    "status": "ok"
+  },
+  {
+    "url": "https://office.holm.team",
+    "cat": "tools",
+    "name": "Office",
+    "desc": "Office tools",
+    "status": "ok"
+  },
+  {
+    "url": "https://v2a.holm.chat",
+    "cat": "tools",
+    "name": "Video \u2192 Audio",
+    "desc": "MP4 \u2192 MP3 converter",
+    "status": "ok"
+  },
+  {
+    "url": "https://vaultwarden.holm.team",
+    "cat": "tools",
+    "name": "Vaultwarden",
+    "desc": "Password manager",
+    "status": "ok"
+  },
+  {
+    "url": "https://cryptpad.holm.team",
+    "cat": "tools",
+    "name": "Cryptpad",
+    "desc": "Collaborative docs",
+    "status": "ok"
+  },
+  {
+    "url": "https://drive.holm.team",
+    "cat": "tools",
+    "name": "Drive",
+    "desc": "File storage",
+    "status": "ok"
+  },
+  {
+    "url": "https://dl.holm.team",
+    "cat": "tools",
+    "name": "Downloader",
+    "desc": "Download manager",
+    "status": "ok"
+  },
+  {
+    "url": "https://workbook.holm.team",
+    "cat": "tools",
+    "name": "Workbook",
+    "desc": "Workbook app",
+    "status": "ok"
+  },
+  {
+    "url": "https://chapters.holm.team",
+    "cat": "tools",
+    "name": "Chapters",
+    "desc": "Chapters service",
+    "status": "ok"
+  },
+  {
+    "url": "https://field.holm.team",
+    "cat": "tools",
+    "name": "Field Station",
+    "desc": "Field tools",
+    "status": "ok"
+  },
+  {
+    "url": "https://mod.holm.team",
+    "cat": "tools",
+    "name": "Moderation",
+    "desc": "Mod tools",
+    "status": "ok"
+  },
+  {
+    "url": "https://qc.holm.team",
+    "cat": "tools",
+    "name": "Quality Control",
+    "desc": "QC tools",
+    "status": "ok"
+  },
+  {
+    "url": "https://wanderer.holm.team",
+    "cat": "tools",
+    "name": "Wanderer",
+    "desc": "GPS track viewer",
+    "status": "ok"
+  },
+  {
+    "url": "https://dashy.holm.team",
+    "cat": "tools",
+    "name": "Dashy",
+    "desc": "Dashboard generator",
+    "status": "ok"
+  },
+  {
+    "url": "https://xray.holm.team",
+    "cat": "tools",
+    "name": "Xray",
+    "desc": "Inspector",
+    "status": "ok"
+  },
+  {
+    "url": "https://arsenal.holm.team",
+    "cat": "tools",
+    "name": "Arsenal",
+    "desc": "App arsenal",
+    "status": "ok"
+  },
+  {
+    "url": "https://ai-functions.holm.team",
+    "cat": "tools",
+    "name": "AI Functions",
+    "desc": "AI workflows",
+    "status": "ok"
+  },
+  {
+    "url": "https://shell.holm.team",
+    "cat": "tools",
+    "name": "Web Shell",
+    "desc": "In-browser shell",
+    "status": "ok"
+  },
+  {
+    "url": "https://forgejo.holm.team",
+    "cat": "infra",
+    "name": "Forgejo",
+    "desc": "Git forge + registry",
+    "status": "ok"
+  },
+  {
+    "url": "https://argo.holm.team",
+    "cat": "infra",
+    "name": "Argo CD",
+    "desc": "GitOps controller",
+    "status": "ok"
+  },
+  {
+    "url": "https://grafana.holm.team",
+    "cat": "infra",
+    "name": "Grafana",
+    "desc": "Metrics",
+    "status": "ok"
+  },
+  {
+    "url": "https://ntfy.holm.team",
+    "cat": "infra",
+    "name": "ntfy",
+    "desc": "Push notifications",
+    "status": "ok"
+  },
+  {
+    "url": "https://uptime.holm.team",
+    "cat": "infra",
+    "name": "Uptime Kuma",
+    "desc": "Uptime monitor",
+    "status": "ok"
+  },
+  {
+    "url": "https://backups.holm.team",
+    "cat": "infra",
+    "name": "Velero",
+    "desc": "Backup status",
+    "status": "ok"
+  },
+  {
+    "url": "https://bks.holm.team",
+    "cat": "infra",
+    "name": "Backup Dashboard",
+    "desc": "Backup health",
+    "status": "ok"
+  },
+  {
+    "url": "https://umami.holm.community",
+    "cat": "infra",
+    "name": "Umami",
+    "desc": "Analytics",
+    "status": "ok"
+  },
+  {
+    "url": "https://auth.holm.team",
+    "cat": "auth",
+    "name": "Keycloak",
+    "desc": "SSO",
+    "status": "ok"
+  },
+  {
+    "url": "https://adventure.holm.team",
+    "cat": "world",
+    "name": "WorkAdventure",
+    "desc": "Virtual workspace",
+    "status": "ok"
+  },
+  {
+    "url": "https://stella.holm.team",
+    "cat": "world",
+    "name": "Stella",
+    "desc": "Star map",
+    "status": "ok"
+  },
+  {
+    "url": "https://mini-rack.holm.team",
+    "cat": "world",
+    "name": "Mini Rack",
+    "desc": "Hardware dashboard",
+    "status": "ok"
+  }
+]

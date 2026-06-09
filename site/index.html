@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holm — Service Directory</title>
+<style>
+:root {
+  --bg: #0e1014;
+  --panel: #161922;
+  --panel-2: #1d212c;
+  --border: #2a2f3c;
+  --text: #e6e8eb;
+  --muted: #888d99;
+  --accent: #4ea8de;
+  --ok: #3ecf8e;
+  --down: #ff6b6b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+.container { max-width: 1280px; margin: 0 auto; padding: 32px 24px; }
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px;
+}
+h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+h1 span { color: var(--accent); }
+.meta { color: var(--muted); font-size: 13px; }
+.search {
+  margin-bottom: 32px;
+  width: 100%;
+  background: var(--panel); border: 1px solid var(--border); color: var(--text);
+  padding: 12px 16px; border-radius: 8px; font-size: 15px;
+  font-family: inherit;
+}
+.search:focus { outline: none; border-color: var(--accent); }
+.section { margin-bottom: 40px; }
+.section-title {
+  font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 12px;
+}
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px;
+}
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; text-decoration: none; color: inherit;
+  display: block; transition: all 0.12s ease; position: relative;
+}
+.card:hover { background: var(--panel-2); border-color: var(--accent); transform: translateY(-1px); }
+.card .head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  background: var(--ok); box-shadow: 0 0 6px currentColor;
+}
+.dot.down { background: var(--down); }
+.name { font-weight: 600; font-size: 14px; flex: 1; }
+.host { color: var(--muted); font-size: 12px; }
+.desc { color: var(--muted); font-size: 13px; }
+.card.hide { display: none; }
+.section.empty { display: none; }
+footer {
+  margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
+  color: var(--muted); font-size: 12px; text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>holm<span>.</span>cluster</h1>
+    <div class="meta"><span id="count">—</span> services</div>
+  </header>
+  <input id="q" class="search" type="search" placeholder="Filter services…" autofocus autocomplete="off">
+  <div id="content"></div>
+  <footer>
+    <span id="clock">—</span> · <a href="/oauth2/sign_out?rd=%2F" style="color:var(--muted)">Sign out</a>
+  </footer>
+</div>
+<script>
+const SITES = [
+  {
+    "url": "https://element.holm.chat",
+    "cat": "comms",
+    "name": "Element",
+    "desc": "Matrix client",
+    "status": "ok"
+  },
+  {
+    "url": "https://cinny.holm.chat",
+    "cat": "comms",
+    "name": "Cinny",
+    "desc": "Alternate Matrix client",
+    "status": "ok"
+  },
+  {
+    "url": "https://matrix.holm.chat",
+    "cat": "comms",
+    "name": "Continuwuity",
+    "desc": "Matrix homeserver",
+    "status": "ok"
+  },
+  {
+    "url": "https://matrix.holm.team",
+    "cat": "comms",
+    "name": "matrix-holm",
+    "desc": "Matrix homeserver (holm.team)",
+    "status": "ok"
+  },
+  {
+    "url": "https://call.holm.chat",
+    "cat": "comms",
+    "name": "Element Call",
+    "desc": "Voice/video calls",
+    "status": "ok"
+  },
+  {
+    "url": "https://snikket.holm.chat",
+    "cat": "comms",
+    "name": "Snikket",
+    "desc": "XMPP admin",
+    "status": "ok"
+  },
+  {
+    "url": "https://cheogram.holm.chat",
+    "cat": "comms",
+    "name": "Cheogram",
+    "desc": "XMPP web client",
+    "status": "ok"
+  },
+  {
+    "url": "https://signal.holm.chat",
+    "cat": "comms",
+    "name": "Signal Web",
+    "desc": "Signal-relay frontend",
+    "status": "ok"
+  },
+  {
+    "url": "https://nostr.holm.chat",
+    "cat": "comms",
+    "name": "Strfry",
+    "desc": "Nostr relay",
+    "status": "ok"
+  },
+  {
+    "url": "https://groups.holm.chat",
+    "cat": "comms",
+    "name": "Snikket groups",
+    "desc": "Group chat",
+    "status": "ok"
+  },
+  {
+    "url": "https://livekit.holm.chat",
+    "cat": "comms",
+    "name": "LiveKit",
+    "desc": "Realtime audio/video",
+    "status": "ok"
+  },
+  {
+    "url": "https://holm.community",
+    "cat": "fediverse",
+    "name": "Mastodon",
+    "desc": "Microblog",
+    "status": "ok"
+  },
+  {
+    "url": "https://holm.video",
+    "cat": "fediverse",
+    "name": "PeerTube",
+    "desc": "Federated video",
+    "status": "ok"
+  },
+  {
+    "url": "https://loops.holm.video",
+    "cat": "fediverse",
+    "name": "Loops",
+    "desc": "Short-form video",
+    "status": "ok"
+  },
+  {
+    "url": "https://live.holm.video",
+    "cat": "fediverse",
+    "name": "Owncast",
+    "desc": "Live streaming",
+    "status": "ok"
+  },
+  {
+    "url": "https://holm.photo",
+    "cat": "fediverse",
+    "name": "Pixelfed",
+    "desc": "Federated photos",
+    "status": "ok"
+  },
+  {
+    "url": "https://lemmy.holm.community",
+    "cat": "fediverse",
+    "name": "Lemmy",
+    "desc": "Federated forum",
+    "status": "ok"
+  },
+  {
+    "url": "https://news.holm.community",
+    "cat": "fediverse",
+    "name": "News",
+    "desc": "Fallacy tracker",
+    "status": "ok"
+  },
+  {
+    "url": "https://relay.holm.chat",
+    "cat": "fediverse",
+    "name": "AP Relay",
+    "desc": "ActivityPub relay",
+    "status": "ok"
+  },
+  {
+    "url": "https://fedi-studio.holm.community",
+    "cat": "fediverse",
+    "name": "Fedi Studio",
+    "desc": "Federation studio",
+    "status": "ok"
+  },
+  {
+    "url": "https://apps.holm.team",
+    "cat": "fediverse",
+    "name": "Fedi Dashboard",
+    "desc": "Sub-apps directory",
+    "status": "ok"
+  },
+  {
+    "url": "https://holos.holm.team",
+    "cat": "fediverse",
+    "name": "Holos Discover",
+    "desc": "Discovery frontend",
+    "status": "ok"
+  },
+  {
+    "url": "https://hunter.holm.team",
+    "cat": "fediverse",
+    "name": "Fedi Hunter",
+    "desc": "Hunter dashboard",
+    "status": "ok"
+  },
+  {
+    "url": "https://docs.holm.community",
+    "cat": "fediverse",
+    "name": "Docs",
+    "desc": "Federation docs",
+    "status": "ok"
+  },
+  {
+    "url": "https://api.holm.community",
+    "cat": "fediverse",
+    "name": "Fedi API",
+    "desc": "Discovery API",
+    "status": "ok"
+  },
+  {
+    "url": "https://memory.holm.team",
+    "cat": "fediverse",
+    "name": "Fedi Memory",
+    "desc": "Memory service",
+    "status": "ok"
+  },
+  {
+    "url": "https://photos.holm.team",
+    "cat": "media",
+    "name": "Immich",
+    "desc": "Photo library",
+    "status": "ok"
+  },
+  {
+    "url": "https://jellyfin.holm.team",
+    "cat": "media",
+    "name": "Jellyfin",
+    "desc": "Media server",
+    "status": "ok"
+  },
+  {
+    "url": "https://audiobooks.holm.team",
+    "cat": "media",
+    "name": "Audiobookshelf",
+    "desc": "Audiobooks + podcasts",
+    "status": "ok"
+  },
+  {
+    "url": "https://music.holm.team",
+    "cat": "media",
+    "name": "Navidrome",
+    "desc": "Music server",
+    "status": "ok"
+  },
+  {
+    "url": "https://tube.holm.team",
+    "cat": "media",
+    "name": "TubeArchivist",
+    "desc": "YouTube archive",
+    "status": "ok"
+  },
+  {
+    "url": "https://ebooks.holm.team",
+    "cat": "media",
+    "name": "Calibre-Web",
+    "desc": "Ebook library",
+    "status": "ok"
+  },
+  {
+    "url": "https://search.holm.community",
+    "cat": "tools",
+    "name": "SearXNG",
+    "desc": "Meta search",
+    "status": "ok"
+  },
+  {
+    "url": "https://rss.holm.team",
+    "cat": "tools",
+    "name": "Miniflux",
+    "desc": "RSS reader",
+    "status": "ok"
+  },
+  {
+    "url": "https://bookmarks.holm.team",
+    "cat": "tools",
+    "name": "Karakeep",
+    "desc": "Bookmarks",
+    "status": "ok"
+  },
+  {
+    "url": "https://forms.holm.team",
+    "cat": "tools",
+    "name": "Formhub",
+    "desc": "Forms",
+    "status": "ok"
+  },
+  {
+    "url": "https://office.holm.team",
+    "cat": "tools",
+    "name": "Office",
+    "desc": "Office tools",
+    "status": "ok"
+  },
+  {
+    "url": "https://v2a.holm.chat",
+    "cat": "tools",
+    "name": "Video \u2192 Audio",
+    "desc": "MP4 \u2192 MP3 converter",
+    "status": "ok"
+  },
+  {
+    "url": "https://vaultwarden.holm.team",
+    "cat": "tools",
+    "name": "Vaultwarden",
+    "desc": "Password manager",
+    "status": "ok"
+  },
+  {
+    "url": "https://cryptpad.holm.team",
+    "cat": "tools",
+    "name": "Cryptpad",
+    "desc": "Collaborative docs",
+    "status": "ok"
+  },
+  {
+    "url": "https://drive.holm.team",
+    "cat": "tools",
+    "name": "Drive",
+    "desc": "File storage",
+    "status": "ok"
+  },
+  {
+    "url": "https://dl.holm.team",
+    "cat": "tools",
+    "name": "Downloader",
+    "desc": "Download manager",
+    "status": "ok"
+  },
+  {
+    "url": "https://workbook.holm.team",
+    "cat": "tools",
+    "name": "Workbook",
+    "desc": "Workbook app",
+    "status": "ok"
+  },
+  {
+    "url": "https://chapters.holm.team",
+    "cat": "tools",
+    "name": "Chapters",
+    "desc": "Chapters service",
+    "status": "ok"
+  },
+  {
+    "url": "https://field.holm.team",
+    "cat": "tools",
+    "name": "Field Station",
+    "desc": "Field tools",
+    "status": "ok"
+  },
+  {
+    "url": "https://mod.holm.team",
+    "cat": "tools",
+    "name": "Moderation",
+    "desc": "Mod tools",
+    "status": "ok"
+  },
+  {
+    "url": "https://qc.holm.team",
+    "cat": "tools",
+    "name": "Quality Control",
+    "desc": "QC tools",
+    "status": "ok"
+  },
+  {
+    "url": "https://wanderer.holm.team",
+    "cat": "tools",
+    "name": "Wanderer",
+    "desc": "GPS track viewer",
+    "status": "ok"
+  },
+  {
+    "url": "https://dashy.holm.team",
+    "cat": "tools",
+    "name": "Dashy",
+    "desc": "Dashboard generator",
+    "status": "ok"
+  },
+  {
+    "url": "https://xray.holm.team",
+    "cat": "tools",
+    "name": "Xray",
+    "desc": "Inspector",
+    "status": "ok"
+  },
+  {
+    "url": "https://arsenal.holm.team",
+    "cat": "tools",
+    "name": "Arsenal",
+    "desc": "App arsenal",
+    "status": "ok"
+  },
+  {
+    "url": "https://ai-functions.holm.team",
+    "cat": "tools",
+    "name": "AI Functions",
+    "desc": "AI workflows",
+    "status": "ok"
+  },
+  {
+    "url": "https://shell.holm.team",
+    "cat": "tools",
+    "name": "Web Shell",
+    "desc": "In-browser shell",
+    "status": "ok"
+  },
+  {
+    "url": "https://forgejo.holm.team",
+    "cat": "infra",
+    "name": "Forgejo",
+    "desc": "Git forge + registry",
+    "status": "ok"
+  },
+  {
+    "url": "https://argo.holm.team",
+    "cat": "infra",
+    "name": "Argo CD",
+    "desc": "GitOps controller",
+    "status": "ok"
+  },
+  {
+    "url": "https://grafana.holm.team",
+    "cat": "infra",
+    "name": "Grafana",
+    "desc": "Metrics",
+    "status": "ok"
+  },
+  {
+    "url": "https://ntfy.holm.team",
+    "cat": "infra",
+    "name": "ntfy",
+    "desc": "Push notifications",
+    "status": "ok"
+  },
+  {
+    "url": "https://uptime.holm.team",
+    "cat": "infra",
+    "name": "Uptime Kuma",
+    "desc": "Uptime monitor",
+    "status": "ok"
+  },
+  {
+    "url": "https://backups.holm.team",
+    "cat": "infra",
+    "name": "Velero",
+    "desc": "Backup status",
+    "status": "ok"
+  },
+  {
+    "url": "https://bks.holm.team",
+    "cat": "infra",
+    "name": "Backup Dashboard",
+    "desc": "Backup health",
+    "status": "ok"
+  },
+  {
+    "url": "https://umami.holm.community",
+    "cat": "infra",
+    "name": "Umami",
+    "desc": "Analytics",
+    "status": "ok"
+  },
+  {
+    "url": "https://auth.holm.team",
+    "cat": "auth",
+    "name": "Keycloak",
+    "desc": "SSO",
+    "status": "ok"
+  },
+  {
+    "url": "https://adventure.holm.team",
+    "cat": "world",
+    "name": "WorkAdventure",
+    "desc": "Virtual workspace",
+    "status": "ok"
+  },
+  {
+    "url": "https://stella.holm.team",
+    "cat": "world",
+    "name": "Stella",
+    "desc": "Star map",
+    "status": "ok"
+  },
+  {
+    "url": "https://mini-rack.holm.team",
+    "cat": "world",
+    "name": "Mini Rack",
+    "desc": "Hardware dashboard",
+    "status": "ok"
+  }
+]
+;
+const SECTION_ORDER = ['fediverse','comms','media','tools','infra','auth','world'];
+const SECTION_LABELS = {
+  fediverse: 'Fediverse',
+  comms: 'Communications',
+  media: 'Media',
+  tools: 'Tools',
+  infra: 'Infrastructure',
+  auth: 'Identity',
+  world: 'World'
+};
+
+function render(filter) {
+  const f = (filter || '').trim().toLowerCase();
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+  let total = 0, shown = 0;
+
+  const groups = {};
+  for (const s of SITES) {
+    total++;
+    (groups[s.cat] = groups[s.cat] || []).push(s);
+  }
+
+  for (const cat of SECTION_ORDER) {
+    const items = groups[cat];
+    if (!items) continue;
+    items.sort((a, b) => a.name.localeCompare(b.name));
+    const visible = items.filter(s =>
+      !f || s.name.toLowerCase().includes(f) || s.desc.toLowerCase().includes(f) || s.url.toLowerCase().includes(f)
+    );
+    if (!visible.length) continue;
+    shown += visible.length;
+    const sec = document.createElement('div');
+    sec.className = 'section';
+    const host = u => u.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    sec.innerHTML = `<div class="section-title">${SECTION_LABELS[cat] || cat}</div>
+      <div class="grid">${visible.map(s => `
+        <a class="card" href="${s.url}" target="_blank" rel="noopener">
+          <div class="head">
+            <span class="dot ${s.status === 'down' ? 'down' : ''}"></span>
+            <span class="name">${s.name}</span>
+          </div>
+          <div class="desc">${s.desc}</div>
+          <div class="host">${host(s.url)}</div>
+        </a>`).join('')}</div>`;
+    content.appendChild(sec);
+  }
+  document.getElementById('count').textContent = f ? `${shown}/${total}` : total;
+}
+
+document.getElementById('q').addEventListener('input', e => render(e.target.value));
+render('');
+
+function tick() {
+  const d = new Date();
+  const z = n => String(n).padStart(2, '0');
+  document.getElementById('clock').textContent =
+    `${d.getUTCFullYear()}-${z(d.getUTCMonth()+1)}-${z(d.getUTCDate())} ${z(d.getUTCHours())}:${z(d.getUTCMinutes())} UTC`;
+}
+tick(); setInterval(tick, 30000);
+</script>
+</body>
+</html>

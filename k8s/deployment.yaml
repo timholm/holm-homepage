@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homepage
+  namespace: homepage
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: homepage}
+  template:
+    metadata:
+      labels: {app: homepage}
+    spec:
+      containers:
+      - name: nginx
+        image: public.ecr.aws/docker/library/nginx:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: site
+          mountPath: /usr/share/nginx/html
+        resources:
+          requests: {cpu: 10m, memory: 32Mi}
+          limits:   {cpu: 200m, memory: 128Mi}
+        readinessProbe:
+          httpGet: {path: /, port: 80}
+          initialDelaySeconds: 2
+          periodSeconds: 10
+      volumes:
+      - name: site
+        configMap:
+          name: homepage-site
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: homepage
+  namespace: homepage
+spec:
+  selector: {app: homepage}
+  ports:
+  - port: 80
+    targetPort: 80
