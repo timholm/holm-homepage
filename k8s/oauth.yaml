@@ -17,7 +17,9 @@ spec:
         args:
         - --http-address=0.0.0.0:4180
         - --provider=keycloak-oidc
-        - --redirect-url=https://holm.team/oauth2/callback
+        # 2026-07-01: holm.team root now serves CryptPad; homepage's canonical
+        # URL is index.holm.team (tunnel + DNS already in place).
+        - --redirect-url=https://index.holm.team/oauth2/callback
         - --oidc-issuer-url=https://auth.holm.team/realms/holm
         - --upstream=http://homepage.homepage.svc.cluster.local:80
         - --cookie-domain=.holm.team
