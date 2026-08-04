@@ -21,6 +21,17 @@ spec:
         # URL is index.holm.team (tunnel + DNS already in place).
         - --redirect-url=https://index.holm.team/oauth2/callback
         - --oidc-issuer-url=https://auth.holm.team/realms/holm
+        # Skip boot-time OIDC discovery: it hits the issuer URL through the
+        # Cloudflare tunnel and kills the pod with 530/error 1033 any time the
+        # tunnel is down (this crashlooped 850+ times). Only the browser leg
+        # (login-url) needs to be public; server-to-server calls go to the
+        # in-cluster keycloak Service. Keycloak's KC_HOSTNAME is pinned to
+        # https://auth.holm.team so the `iss` claim still matches.
+        - --skip-oidc-discovery=true
+        - --login-url=https://auth.holm.team/realms/holm/protocol/openid-connect/auth
+        - --redeem-url=http://keycloak.keycloak.svc.cluster.local/realms/holm/protocol/openid-connect/token
+        - --oidc-jwks-url=http://keycloak.keycloak.svc.cluster.local/realms/holm/protocol/openid-connect/certs
+        - --profile-url=http://keycloak.keycloak.svc.cluster.local/realms/holm/protocol/openid-connect/userinfo
         - --upstream=http://homepage.homepage.svc.cluster.local:80
         - --cookie-domain=.holm.team
         - --cookie-secure=true
