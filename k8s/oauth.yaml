@@ -16,30 +16,31 @@ spec:
         image: quay.io/oauth2-proxy/oauth2-proxy:v7.6.0
         args:
         - --http-address=0.0.0.0:4180
-        - --provider=keycloak-oidc
         # 2026-07-01: holm.team root now serves CryptPad; homepage's canonical
         # URL is index.holm.team (tunnel + DNS already in place).
         - --redirect-url=https://index.holm.team/oauth2/callback
-        - --oidc-issuer-url=https://auth.holm.team/realms/holm
+        - --oidc-issuer-url=https://sso.holm.team
+        - --provider=oidc
+        - --skip-oidc-discovery=true # no network at boot: a down edge must not crashloop the proxy
+        - --login-url=https://sso.holm.team/api/oidc/authorization
+        - --redeem-url=https://sso.holm.team/api/oidc/token
+        - --oidc-jwks-url=https://sso.holm.team/jwks.json
+        - --profile-url=https://sso.holm.team/api/oidc/userinfo
         # Skip boot-time OIDC discovery: it hits the issuer URL through the
         # Cloudflare tunnel and kills the pod with 530/error 1033 any time the
         # tunnel is down (this crashlooped 850+ times). Only the browser leg
         # (login-url) needs to be public; server-to-server calls go to the
         # in-cluster keycloak Service. Keycloak's KC_HOSTNAME is pinned to
         # https://auth.holm.team so the `iss` claim still matches.
-        - --skip-oidc-discovery=true
-        - --login-url=https://auth.holm.team/realms/holm/protocol/openid-connect/auth
-        - --redeem-url=http://keycloak.keycloak.svc.cluster.local/realms/holm/protocol/openid-connect/token
-        - --oidc-jwks-url=http://keycloak.keycloak.svc.cluster.local/realms/holm/protocol/openid-connect/certs
-        - --profile-url=http://keycloak.keycloak.svc.cluster.local/realms/holm/protocol/openid-connect/userinfo
         - --upstream=http://homepage.homepage.svc.cluster.local:80
         - --cookie-domain=.holm.team
         - --cookie-secure=true
         - --cookie-samesite=lax
         - --whitelist-domain=.holm.team
         - --email-domain=*
+        - --scope=openid email profile groups
+        - --allowed-group=admins # LLDAP security group, via Authelia
         - --skip-provider-button=true
-        - --oidc-extra-audience=account
         - --pass-access-token=true
         - --pass-authorization-header=true
         - --set-authorization-header=true

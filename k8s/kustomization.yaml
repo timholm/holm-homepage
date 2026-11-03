@@ -5,6 +5,7 @@ resources:
 - namespace.yaml
 - deployment.yaml
 - oauth.yaml
+- oauth-sealed.yaml # Holm SSO (Authelia) client; sealed, safe in a public repo
 configMapGenerator:
 - name: homepage-site
   files:
