@@ -87,360 +87,19 @@ footer {
 <script>
 const SITES = [
   {
-    "url": "https://element.holm.chat",
+    "url": "https://admin.holm.chat",
     "cat": "comms",
-    "name": "Element",
-    "desc": "Matrix client",
+    "name": "Admin",
+    "desc": "matrix app",
+    "ns": "matrix",
     "status": "ok"
   },
   {
-    "url": "https://cinny.holm.chat",
-    "cat": "comms",
-    "name": "Cinny",
-    "desc": "Alternate Matrix client",
-    "status": "ok"
-  },
-  {
-    "url": "https://matrix.holm.chat",
-    "cat": "comms",
-    "name": "Continuwuity",
-    "desc": "Matrix homeserver",
-    "status": "ok"
-  },
-  {
-    "url": "https://matrix.holm.team",
-    "cat": "comms",
-    "name": "matrix-holm",
-    "desc": "Matrix homeserver (holm.team)",
-    "status": "ok"
-  },
-  {
-    "url": "https://call.holm.chat",
-    "cat": "comms",
-    "name": "Element Call",
-    "desc": "Voice/video calls",
-    "status": "ok"
-  },
-  {
-    "url": "https://snikket.holm.chat",
-    "cat": "comms",
-    "name": "Snikket",
-    "desc": "XMPP admin",
-    "status": "ok"
-  },
-  {
-    "url": "https://cheogram.holm.chat",
-    "cat": "comms",
-    "name": "Cheogram",
-    "desc": "XMPP web client",
-    "status": "ok"
-  },
-  {
-    "url": "https://signal.holm.chat",
-    "cat": "comms",
-    "name": "Signal Web",
-    "desc": "Signal-relay frontend",
-    "status": "ok"
-  },
-  {
-    "url": "https://nostr.holm.chat",
-    "cat": "comms",
-    "name": "Strfry",
-    "desc": "Nostr relay",
-    "status": "ok"
-  },
-  {
-    "url": "https://groups.holm.chat",
-    "cat": "comms",
-    "name": "Snikket groups",
-    "desc": "Group chat",
-    "status": "ok"
-  },
-  {
-    "url": "https://livekit.holm.chat",
-    "cat": "comms",
-    "name": "LiveKit",
-    "desc": "Realtime audio/video",
-    "status": "ok"
-  },
-  {
-    "url": "https://holm.community",
-    "cat": "fediverse",
-    "name": "Mastodon",
-    "desc": "Microblog",
-    "status": "ok"
-  },
-  {
-    "url": "https://holm.video",
-    "cat": "fediverse",
-    "name": "PeerTube",
-    "desc": "Federated video",
-    "status": "ok"
-  },
-  {
-    "url": "https://loops.holm.video",
-    "cat": "fediverse",
-    "name": "Loops",
-    "desc": "Short-form video",
-    "status": "ok"
-  },
-  {
-    "url": "https://live.holm.video",
-    "cat": "fediverse",
-    "name": "Owncast",
-    "desc": "Live streaming",
-    "status": "ok"
-  },
-  {
-    "url": "https://holm.photo",
-    "cat": "fediverse",
-    "name": "Pixelfed",
-    "desc": "Federated photos",
-    "status": "ok"
-  },
-  {
-    "url": "https://lemmy.holm.community",
-    "cat": "fediverse",
-    "name": "Lemmy",
-    "desc": "Federated forum",
-    "status": "ok"
-  },
-  {
-    "url": "https://news.holm.community",
-    "cat": "fediverse",
-    "name": "News",
-    "desc": "Fallacy tracker",
-    "status": "ok"
-  },
-  {
-    "url": "https://relay.holm.chat",
-    "cat": "fediverse",
-    "name": "AP Relay",
-    "desc": "ActivityPub relay",
-    "status": "ok"
-  },
-  {
-    "url": "https://fedi-studio.holm.community",
-    "cat": "fediverse",
-    "name": "Fedi Studio",
-    "desc": "Federation studio",
-    "status": "ok"
-  },
-  {
-    "url": "https://apps.holm.team",
-    "cat": "fediverse",
-    "name": "Fedi Dashboard",
-    "desc": "Sub-apps directory",
-    "status": "ok"
-  },
-  {
-    "url": "https://holos.holm.team",
-    "cat": "fediverse",
-    "name": "Holos Discover",
-    "desc": "Discovery frontend",
-    "status": "ok"
-  },
-  {
-    "url": "https://hunter.holm.team",
-    "cat": "fediverse",
-    "name": "Fedi Hunter",
-    "desc": "Hunter dashboard",
-    "status": "ok"
-  },
-  {
-    "url": "https://docs.holm.community",
-    "cat": "fediverse",
-    "name": "Docs",
-    "desc": "Federation docs",
-    "status": "ok"
-  },
-  {
-    "url": "https://api.holm.community",
-    "cat": "fediverse",
-    "name": "Fedi API",
-    "desc": "Discovery API",
-    "status": "ok"
-  },
-  {
-    "url": "https://memory.holm.team",
-    "cat": "fediverse",
-    "name": "Fedi Memory",
-    "desc": "Memory service",
-    "status": "ok"
-  },
-  {
-    "url": "https://immich.holm.photo",
-    "cat": "media",
-    "name": "Immich",
-    "desc": "Photo library",
-    "status": "ok"
-  },
-  {
-    "url": "https://jellyfin.holm.team",
-    "cat": "media",
-    "name": "Jellyfin",
-    "desc": "Media server",
-    "status": "ok"
-  },
-  {
-    "url": "https://audiobooks.holm.team",
-    "cat": "media",
-    "name": "Audiobookshelf",
-    "desc": "Audiobooks + podcasts",
-    "status": "ok"
-  },
-  {
-    "url": "https://music.holm.team",
-    "cat": "media",
-    "name": "Navidrome",
-    "desc": "Music server",
-    "status": "ok"
-  },
-  {
-    "url": "https://tube.holm.team",
-    "cat": "media",
-    "name": "TubeArchivist",
-    "desc": "YouTube archive",
-    "status": "ok"
-  },
-  {
-    "url": "https://ebooks.holm.team",
-    "cat": "media",
-    "name": "Calibre-Web",
-    "desc": "Ebook library",
-    "status": "ok"
-  },
-  {
-    "url": "https://search.holm.community",
-    "cat": "tools",
-    "name": "SearXNG",
-    "desc": "Meta search",
-    "status": "ok"
-  },
-  {
-    "url": "https://rss.holm.team",
-    "cat": "tools",
-    "name": "Miniflux",
-    "desc": "RSS reader",
-    "status": "ok"
-  },
-  {
-    "url": "https://bookmarks.holm.team",
-    "cat": "tools",
-    "name": "Karakeep",
-    "desc": "Bookmarks",
-    "status": "ok"
-  },
-  {
-    "url": "https://forms.holm.team",
-    "cat": "tools",
-    "name": "Formhub",
-    "desc": "Forms",
-    "status": "ok"
-  },
-  {
-    "url": "https://office.holm.team",
-    "cat": "tools",
-    "name": "Office",
-    "desc": "Office tools",
-    "status": "ok"
-  },
-  {
-    "url": "https://v2a.holm.chat",
-    "cat": "tools",
-    "name": "Video \u2192 Audio",
-    "desc": "MP4 \u2192 MP3 converter",
-    "status": "ok"
-  },
-  {
-    "url": "https://vaultwarden.holm.team",
-    "cat": "tools",
-    "name": "Vaultwarden",
-    "desc": "Password manager",
-    "status": "ok"
-  },
-  {
-    "url": "https://cryptpad.holm.team",
-    "cat": "tools",
-    "name": "Cryptpad",
-    "desc": "Collaborative docs",
-    "status": "ok"
-  },
-  {
-    "url": "https://drive.holm.team",
-    "cat": "tools",
-    "name": "Drive",
-    "desc": "File storage",
-    "status": "ok"
-  },
-  {
-    "url": "https://dl.holm.team",
-    "cat": "tools",
-    "name": "Downloader",
-    "desc": "Download manager",
-    "status": "ok"
-  },
-  {
-    "url": "https://workbook.holm.team",
-    "cat": "tools",
-    "name": "Workbook",
-    "desc": "Workbook app",
-    "status": "ok"
-  },
-  {
-    "url": "https://chapters.holm.team",
-    "cat": "tools",
-    "name": "Chapters",
-    "desc": "Chapters service",
-    "status": "ok"
-  },
-  {
-    "url": "https://field.holm.team",
-    "cat": "tools",
-    "name": "Field Station",
-    "desc": "Field tools",
-    "status": "ok"
-  },
-  {
-    "url": "https://mod.holm.team",
-    "cat": "tools",
-    "name": "Moderation",
-    "desc": "Mod tools",
-    "status": "ok"
-  },
-  {
-    "url": "https://qc.holm.team",
-    "cat": "tools",
-    "name": "Quality Control",
-    "desc": "QC tools",
-    "status": "ok"
-  },
-  {
-    "url": "https://wanderer.holm.team",
-    "cat": "tools",
-    "name": "Wanderer",
-    "desc": "GPS track viewer",
-    "status": "ok"
-  },
-  {
-    "url": "https://dashy.holm.team",
-    "cat": "tools",
-    "name": "Dashy",
-    "desc": "Dashboard generator",
-    "status": "ok"
-  },
-  {
-    "url": "https://xray.holm.team",
-    "cat": "tools",
-    "name": "Xray",
-    "desc": "Inspector",
-    "status": "ok"
-  },
-  {
-    "url": "https://arsenal.holm.team",
-    "cat": "tools",
-    "name": "Arsenal",
-    "desc": "App arsenal",
+    "url": "https://agents.holm.team",
+    "cat": "infra",
+    "name": "Agents",
+    "desc": "ai app",
+    "ns": "ai",
     "status": "ok"
   },
   {
@@ -448,20 +107,23 @@ const SITES = [
     "cat": "tools",
     "name": "AI Functions",
     "desc": "AI workflows",
+    "ns": "ai-functions",
     "status": "ok"
   },
   {
-    "url": "https://shell.holm.team",
+    "url": "https://app.holm.team",
     "cat": "tools",
-    "name": "Web Shell",
-    "desc": "In-browser shell",
+    "name": "App",
+    "desc": "openwebui app",
+    "ns": "openwebui",
     "status": "ok"
   },
   {
-    "url": "https://forgejo.holm.team",
-    "cat": "infra",
-    "name": "Forgejo",
-    "desc": "Git forge + registry",
+    "url": "https://apps.holm.team",
+    "cat": "fediverse",
+    "name": "Fedi Dashboard",
+    "desc": "Sub-apps directory",
+    "ns": "fedi-discover",
     "status": "ok"
   },
   {
@@ -469,55 +131,31 @@ const SITES = [
     "cat": "infra",
     "name": "Argo CD",
     "desc": "GitOps controller",
+    "ns": "argocd",
     "status": "ok"
   },
   {
-    "url": "https://grafana.holm.team",
-    "cat": "infra",
-    "name": "Grafana",
-    "desc": "Metrics",
+    "url": "https://arsenal.holm.team",
+    "cat": "tools",
+    "name": "Arsenal",
+    "desc": "App arsenal",
+    "ns": "arsenal",
     "status": "ok"
   },
   {
-    "url": "https://ntfy.holm.team",
-    "cat": "infra",
-    "name": "ntfy",
-    "desc": "Push notifications",
+    "url": "https://audiobooks.holm.team",
+    "cat": "media",
+    "name": "Audiobookshelf",
+    "desc": "Audiobooks + podcasts",
+    "ns": "audiobookshelf",
     "status": "ok"
   },
   {
-    "url": "https://uptime.holm.team",
-    "cat": "infra",
-    "name": "Uptime Kuma",
-    "desc": "Uptime monitor",
-    "status": "ok"
-  },
-  {
-    "url": "https://backups.holm.team",
-    "cat": "infra",
-    "name": "Velero",
-    "desc": "Backup status",
-    "status": "ok"
-  },
-  {
-    "url": "https://bks.holm.team",
-    "cat": "infra",
-    "name": "Backup Dashboard",
-    "desc": "Backup health",
-    "status": "ok"
-  },
-  {
-    "url": "https://umami.holm.community",
-    "cat": "infra",
-    "name": "Umami",
-    "desc": "Analytics",
-    "status": "ok"
-  },
-  {
-    "url": "https://headlamp.holm.team",
-    "cat": "infra",
-    "name": "Headlamp",
-    "desc": "Kubernetes web UI",
+    "url": "https://auth.holm.chat",
+    "cat": "auth",
+    "name": "Auth",
+    "desc": "matrix app",
+    "ns": "matrix",
     "status": "ok"
   },
   {
@@ -525,20 +163,503 @@ const SITES = [
     "cat": "auth",
     "name": "Keycloak",
     "desc": "SSO",
+    "ns": "keycloak",
     "status": "ok"
   },
   {
-    "url": "https://adventure.holm.team",
-    "cat": "world",
-    "name": "WorkAdventure",
-    "desc": "Virtual workspace",
+    "url": "https://backups.holm.team",
+    "cat": "infra",
+    "name": "Velero",
+    "desc": "Backup status",
+    "ns": "velero-dashboard",
     "status": "ok"
   },
   {
-    "url": "https://stella.holm.team",
-    "cat": "world",
-    "name": "Stella",
-    "desc": "Star map",
+    "url": "https://bks.holm.team",
+    "cat": "infra",
+    "name": "Backup Dashboard",
+    "desc": "Backup health",
+    "ns": "backup-dashboard",
+    "status": "down"
+  },
+  {
+    "url": "https://build.holm.chat",
+    "cat": "comms",
+    "name": "Build",
+    "desc": "build app",
+    "ns": "build",
+    "status": "ok"
+  },
+  {
+    "url": "https://bunker.holm.team",
+    "cat": "tools",
+    "name": "Bunker",
+    "desc": "homepage app",
+    "ns": "homepage",
+    "status": "ok"
+  },
+  {
+    "url": "https://call.holm.chat",
+    "cat": "comms",
+    "name": "Element Call",
+    "desc": "Voice/video calls",
+    "ns": "calls",
+    "status": "ok"
+  },
+  {
+    "url": "https://cam.holm.team",
+    "cat": "tools",
+    "name": "Cam",
+    "desc": "cam-relay app",
+    "ns": "cam-relay",
+    "status": "ok"
+  },
+  {
+    "url": "https://cards.holm.video",
+    "cat": "media",
+    "name": "Cards",
+    "desc": "cards app",
+    "ns": "cards",
+    "status": "ok"
+  },
+  {
+    "url": "https://chapters.holm.team",
+    "cat": "tools",
+    "name": "Chapters",
+    "desc": "Chapters service",
+    "ns": "chapters",
+    "status": "ok"
+  },
+  {
+    "url": "https://cheogram.holm.chat",
+    "cat": "comms",
+    "name": "Cheogram",
+    "desc": "XMPP web client",
+    "ns": "cheogram",
+    "status": "ok"
+  },
+  {
+    "url": "https://cinny.holm.chat",
+    "cat": "comms",
+    "name": "Cinny",
+    "desc": "Alternate Matrix client",
+    "ns": "cinny",
+    "status": "ok"
+  },
+  {
+    "url": "https://cloud.holm.chat",
+    "cat": "comms",
+    "name": "Cloud",
+    "desc": "holm-cloud app",
+    "ns": "holm-cloud",
+    "status": "ok"
+  },
+  {
+    "url": "https://cloud.holm.community",
+    "cat": "fediverse",
+    "name": "Cloud",
+    "desc": "holm-cloud app",
+    "ns": "holm-cloud",
+    "status": "ok"
+  },
+  {
+    "url": "https://cloud.holm.photo",
+    "cat": "media",
+    "name": "Cloud",
+    "desc": "holm-cloud app",
+    "ns": "holm-cloud",
+    "status": "ok"
+  },
+  {
+    "url": "https://cloud.holm.team",
+    "cat": "tools",
+    "name": "Cloud",
+    "desc": "holm-cloud app",
+    "ns": "holm-cloud",
+    "status": "ok"
+  },
+  {
+    "url": "https://cloud.holm.video",
+    "cat": "media",
+    "name": "Cloud",
+    "desc": "holm-cloud app",
+    "ns": "holm-cloud",
+    "status": "ok"
+  },
+  {
+    "url": "https://cryptpad.holm.team",
+    "cat": "tools",
+    "name": "Cryptpad",
+    "desc": "Collaborative docs",
+    "ns": "cryptpad",
+    "status": "ok"
+  },
+  {
+    "url": "https://current.holm.team",
+    "cat": "infra",
+    "name": "Current",
+    "desc": "current app",
+    "ns": "current",
+    "status": "ok"
+  },
+  {
+    "url": "https://dashy.holm.team",
+    "cat": "tools",
+    "name": "Dashy",
+    "desc": "Dashboard generator",
+    "ns": "dashy",
+    "status": "down"
+  },
+  {
+    "url": "https://discover.holm.community",
+    "cat": "fediverse",
+    "name": "Discover",
+    "desc": "holos-discover app",
+    "ns": "holos-discover",
+    "status": "ok"
+  },
+  {
+    "url": "https://dl.holm.team",
+    "cat": "tools",
+    "name": "Downloader",
+    "desc": "Download manager",
+    "ns": "downloader",
+    "status": "ok"
+  },
+  {
+    "url": "https://docs.holm.community",
+    "cat": "fediverse",
+    "name": "Docs",
+    "desc": "Federation docs",
+    "ns": "holm-docs",
+    "status": "ok"
+  },
+  {
+    "url": "https://docs.holm.team",
+    "cat": "tools",
+    "name": "Docs",
+    "desc": "documenso app",
+    "ns": "documenso",
+    "status": "ok"
+  },
+  {
+    "url": "https://drive.holm.team",
+    "cat": "tools",
+    "name": "Drive",
+    "desc": "File storage",
+    "ns": "drive",
+    "status": "ok"
+  },
+  {
+    "url": "https://ebooks.holm.team",
+    "cat": "media",
+    "name": "Calibre-Web",
+    "desc": "Ebook library",
+    "ns": "calibre-web",
+    "status": "ok"
+  },
+  {
+    "url": "https://element.holm.chat",
+    "cat": "comms",
+    "name": "Element",
+    "desc": "Matrix client",
+    "ns": "element",
+    "status": "ok"
+  },
+  {
+    "url": "https://fedi-studio.holm.community",
+    "cat": "fediverse",
+    "name": "Fedi Studio",
+    "desc": "Federation studio",
+    "ns": "fedi-discover",
+    "status": "ok"
+  },
+  {
+    "url": "https://field.holm.team",
+    "cat": "tools",
+    "name": "Field Station",
+    "desc": "Field tools",
+    "ns": "field-station",
+    "status": "ok"
+  },
+  {
+    "url": "https://finder.holm.team",
+    "cat": "tools",
+    "name": "Finder",
+    "desc": "finder app",
+    "ns": "finder",
+    "status": "ok"
+  },
+  {
+    "url": "https://floorplans.holm.chat",
+    "cat": "comms",
+    "name": "Floorplans",
+    "desc": "floorplans app",
+    "ns": "floorplans",
+    "status": "ok"
+  },
+  {
+    "url": "https://forgejo.holm.team",
+    "cat": "infra",
+    "name": "Forgejo",
+    "desc": "Git forge + registry",
+    "ns": "forgejo",
+    "status": "ok"
+  },
+  {
+    "url": "https://forms.holm.team",
+    "cat": "tools",
+    "name": "Formhub",
+    "desc": "Forms",
+    "ns": "formhub",
+    "status": "ok"
+  },
+  {
+    "url": "https://globe.holm.team",
+    "cat": "tools",
+    "name": "Globe",
+    "desc": "globe app",
+    "ns": "globe",
+    "status": "ok"
+  },
+  {
+    "url": "https://gods-eye-view.holm.community",
+    "cat": "fediverse",
+    "name": "Gods Eye View",
+    "desc": "gods-eye-view app",
+    "ns": "gods-eye-view",
+    "status": "ok"
+  },
+  {
+    "url": "https://grafana.holm.team",
+    "cat": "infra",
+    "name": "Grafana",
+    "desc": "Metrics",
+    "ns": "monitoring",
+    "status": "ok"
+  },
+  {
+    "url": "https://groups.holm.chat",
+    "cat": "comms",
+    "name": "Snikket groups",
+    "desc": "Group chat",
+    "ns": "snikket",
+    "status": "ok"
+  },
+  {
+    "url": "https://habit.holm.team",
+    "cat": "tools",
+    "name": "Habit",
+    "desc": "habit app",
+    "ns": "habit",
+    "status": "ok"
+  },
+  {
+    "url": "https://headlamp.holm.team",
+    "cat": "infra",
+    "name": "Headlamp",
+    "desc": "headlamp app",
+    "ns": "headlamp",
+    "status": "ok"
+  },
+  {
+    "url": "https://holm.chat",
+    "cat": "comms",
+    "name": "Holm",
+    "desc": "holmd app",
+    "ns": "holmd",
+    "status": "ok"
+  },
+  {
+    "url": "https://holm.community",
+    "cat": "fediverse",
+    "name": "Mastodon",
+    "desc": "Microblog",
+    "ns": "mastodon",
+    "status": "ok"
+  },
+  {
+    "url": "https://holm.photo",
+    "cat": "fediverse",
+    "name": "Pixelfed",
+    "desc": "Federated photos",
+    "ns": "pixelfed",
+    "status": "ok"
+  },
+  {
+    "url": "https://holm.team",
+    "cat": "tools",
+    "name": "Holm",
+    "desc": "holm-team app",
+    "ns": "holm-team",
+    "status": "ok"
+  },
+  {
+    "url": "https://holm.video",
+    "cat": "fediverse",
+    "name": "PeerTube",
+    "desc": "Federated video",
+    "ns": "peertube",
+    "status": "ok"
+  },
+  {
+    "url": "https://holos.holm.team",
+    "cat": "fediverse",
+    "name": "Holos Discover",
+    "desc": "Discovery frontend",
+    "ns": "holos-discover",
+    "status": "ok"
+  },
+  {
+    "url": "https://hq.holm.team",
+    "cat": "infra",
+    "name": "Hq",
+    "desc": "holm-cloud app",
+    "ns": "holm-cloud",
+    "status": "ok"
+  },
+  {
+    "url": "https://hunter.holm.team",
+    "cat": "fediverse",
+    "name": "Fedi Hunter",
+    "desc": "Hunter dashboard",
+    "ns": "fedi-hunter",
+    "status": "ok"
+  },
+  {
+    "url": "https://immich.holm.photo",
+    "cat": "media",
+    "name": "Immich",
+    "desc": "immich app",
+    "ns": "immich",
+    "status": "ok"
+  },
+  {
+    "url": "https://internet.holm.team",
+    "cat": "infra",
+    "name": "Internet",
+    "desc": "own-edge app",
+    "ns": "own-edge",
+    "status": "ok"
+  },
+  {
+    "url": "https://invidious.holm.team",
+    "cat": "tools",
+    "name": "Invidious",
+    "desc": "invidious app",
+    "ns": "invidious",
+    "status": "ok"
+  },
+  {
+    "url": "https://jellyfin.holm.team",
+    "cat": "media",
+    "name": "Jellyfin",
+    "desc": "Media server",
+    "ns": "jellyfin",
+    "status": "ok"
+  },
+  {
+    "url": "https://k8s.holm.team",
+    "cat": "infra",
+    "name": "K8S",
+    "desc": "headlamp app",
+    "ns": "headlamp",
+    "status": "ok"
+  },
+  {
+    "url": "https://ketesa.holm.chat",
+    "cat": "comms",
+    "name": "Ketesa",
+    "desc": "matrix app",
+    "ns": "matrix",
+    "status": "ok"
+  },
+  {
+    "url": "https://lemmy.holm.community",
+    "cat": "fediverse",
+    "name": "Lemmy",
+    "desc": "Federated forum",
+    "ns": "lemmy",
+    "status": "ok"
+  },
+  {
+    "url": "https://livekit.holm.chat",
+    "cat": "comms",
+    "name": "LiveKit",
+    "desc": "Realtime audio/video",
+    "ns": "calls",
+    "status": "ok"
+  },
+  {
+    "url": "https://loops.holm.video",
+    "cat": "fediverse",
+    "name": "Loops",
+    "desc": "Short-form video",
+    "ns": "loops",
+    "status": "ok"
+  },
+  {
+    "url": "https://mail.holm.team",
+    "cat": "tools",
+    "name": "Mail",
+    "desc": "webmail app",
+    "ns": "webmail",
+    "status": "ok"
+  },
+  {
+    "url": "https://manus.holm.team",
+    "cat": "infra",
+    "name": "Manus",
+    "desc": "openmanus app",
+    "ns": "openmanus",
+    "status": "ok"
+  },
+  {
+    "url": "https://map.holm.team",
+    "cat": "tools",
+    "name": "Map",
+    "desc": "worldview app",
+    "ns": "worldview",
+    "status": "ok"
+  },
+  {
+    "url": "https://matrix.holm.chat",
+    "cat": "comms",
+    "name": "Continuwuity",
+    "desc": "Matrix homeserver",
+    "ns": "matrix",
+    "status": "ok"
+  },
+  {
+    "url": "https://matrix.holm.photo",
+    "cat": "media",
+    "name": "Matrix",
+    "desc": "holmd app",
+    "ns": "holmd",
+    "status": "ok"
+  },
+  {
+    "url": "https://matrix.holm.team",
+    "cat": "comms",
+    "name": "matrix-holm",
+    "desc": "Matrix homeserver (holm.team)",
+    "ns": "matrix-holm",
+    "status": "ok"
+  },
+  {
+    "url": "https://memex.holm.team",
+    "cat": "tools",
+    "name": "Memex",
+    "desc": "memex app",
+    "ns": "memex",
+    "status": "ok"
+  },
+  {
+    "url": "https://memory.holm.team",
+    "cat": "fediverse",
+    "name": "Fedi Memory",
+    "desc": "Memory service",
+    "ns": "fedi-memory",
     "status": "ok"
   },
   {
@@ -546,6 +667,399 @@ const SITES = [
     "cat": "world",
     "name": "Mini Rack",
     "desc": "Hardware dashboard",
+    "ns": "mini-rack",
+    "status": "down"
+  },
+  {
+    "url": "https://mod.holm.team",
+    "cat": "tools",
+    "name": "Moderation",
+    "desc": "Mod tools",
+    "ns": "moderation",
+    "status": "ok"
+  },
+  {
+    "url": "https://music.holm.team",
+    "cat": "media",
+    "name": "Navidrome",
+    "desc": "Music server",
+    "ns": "navidrome",
+    "status": "ok"
+  },
+  {
+    "url": "https://news.holm.community",
+    "cat": "fediverse",
+    "name": "News",
+    "desc": "Fallacy tracker",
+    "ns": "news",
+    "status": "ok"
+  },
+  {
+    "url": "https://nomad-books.holm.community",
+    "cat": "fediverse",
+    "name": "Nomad Books",
+    "desc": "nomad app",
+    "ns": "nomad",
+    "status": "ok"
+  },
+  {
+    "url": "https://nomad-cyberchef.holm.community",
+    "cat": "fediverse",
+    "name": "Nomad Cyberchef",
+    "desc": "nomad app",
+    "ns": "nomad",
+    "status": "ok"
+  },
+  {
+    "url": "https://nomad-draw.holm.community",
+    "cat": "fediverse",
+    "name": "Nomad Draw",
+    "desc": "nomad app",
+    "ns": "nomad",
+    "status": "ok"
+  },
+  {
+    "url": "https://nomad-jellyfin.holm.community",
+    "cat": "fediverse",
+    "name": "Nomad Jellyfin",
+    "desc": "nomad app",
+    "ns": "nomad",
+    "status": "ok"
+  },
+  {
+    "url": "https://nomad-kiwix.holm.community",
+    "cat": "fediverse",
+    "name": "Nomad Kiwix",
+    "desc": "nomad app",
+    "ns": "nomad",
+    "status": "ok"
+  },
+  {
+    "url": "https://nomad-kolibri.holm.community",
+    "cat": "fediverse",
+    "name": "Nomad Kolibri",
+    "desc": "nomad app",
+    "ns": "nomad",
+    "status": "ok"
+  },
+  {
+    "url": "https://nomad-notes.holm.community",
+    "cat": "fediverse",
+    "name": "Nomad Notes",
+    "desc": "nomad app",
+    "ns": "nomad",
+    "status": "ok"
+  },
+  {
+    "url": "https://nomad-tools.holm.community",
+    "cat": "fediverse",
+    "name": "Nomad Tools",
+    "desc": "nomad app",
+    "ns": "nomad",
+    "status": "ok"
+  },
+  {
+    "url": "https://nomad.holm.community",
+    "cat": "fediverse",
+    "name": "Nomad",
+    "desc": "nomad app",
+    "ns": "nomad",
+    "status": "ok"
+  },
+  {
+    "url": "https://nostr.holm.chat",
+    "cat": "comms",
+    "name": "Strfry",
+    "desc": "Nostr relay",
+    "ns": "strfry",
+    "status": "ok"
+  },
+  {
+    "url": "https://ntfy.holm.team",
+    "cat": "infra",
+    "name": "ntfy",
+    "desc": "Push notifications",
+    "ns": "ntfy",
+    "status": "ok"
+  },
+  {
+    "url": "https://office.holm.team",
+    "cat": "tools",
+    "name": "Office",
+    "desc": "Office tools",
+    "ns": "office",
+    "status": "ok"
+  },
+  {
+    "url": "https://ollama.holm.team",
+    "cat": "tools",
+    "name": "Ollama",
+    "desc": "openwebui app",
+    "ns": "openwebui",
+    "status": "down"
+  },
+  {
+    "url": "https://ops.holm.team",
+    "cat": "infra",
+    "name": "Ops",
+    "desc": "worldview app",
+    "ns": "worldview",
+    "status": "ok"
+  },
+  {
+    "url": "https://orc.holm.team",
+    "cat": "infra",
+    "name": "Orc",
+    "desc": "claude-ops app",
+    "ns": "claude-ops",
+    "status": "ok"
+  },
+  {
+    "url": "https://player.holm.chat",
+    "cat": "comms",
+    "name": "Player",
+    "desc": "content app",
+    "ns": "content",
+    "status": "ok"
+  },
+  {
+    "url": "https://qc.holm.team",
+    "cat": "tools",
+    "name": "Quality Control",
+    "desc": "QC tools",
+    "ns": "quality-control",
+    "status": "ok"
+  },
+  {
+    "url": "https://relay.holm.chat",
+    "cat": "fediverse",
+    "name": "AP Relay",
+    "desc": "ActivityPub relay",
+    "ns": "relay",
+    "status": "ok"
+  },
+  {
+    "url": "https://relay.holm.community",
+    "cat": "fediverse",
+    "name": "Relay",
+    "desc": "relay app",
+    "ns": "relay",
+    "status": "ok"
+  },
+  {
+    "url": "https://room.holm.team",
+    "cat": "tools",
+    "name": "Room",
+    "desc": "room app",
+    "ns": "room",
+    "status": "ok"
+  },
+  {
+    "url": "https://rss.holm.team",
+    "cat": "tools",
+    "name": "Miniflux",
+    "desc": "RSS reader",
+    "ns": "miniflux",
+    "status": "ok"
+  },
+  {
+    "url": "https://scribble.holm.chat",
+    "cat": "comms",
+    "name": "Scribble",
+    "desc": "games app",
+    "ns": "games",
+    "status": "down"
+  },
+  {
+    "url": "https://search.holm.community",
+    "cat": "tools",
+    "name": "SearXNG",
+    "desc": "Meta search",
+    "ns": "searxng",
+    "status": "ok"
+  },
+  {
+    "url": "https://search.holm.team",
+    "cat": "tools",
+    "name": "Search",
+    "desc": "holm-cloud app",
+    "ns": "holm-cloud",
+    "status": "ok"
+  },
+  {
+    "url": "https://share.holm.chat",
+    "cat": "comms",
+    "name": "Share",
+    "desc": "snikket app",
+    "ns": "snikket",
+    "status": "ok"
+  },
+  {
+    "url": "https://shed.holm.team",
+    "cat": "tools",
+    "name": "Shed",
+    "desc": "shed app",
+    "ns": "shed",
+    "status": "ok"
+  },
+  {
+    "url": "https://shell.holm.team",
+    "cat": "tools",
+    "name": "Web Shell",
+    "desc": "In-browser shell",
+    "ns": "claude-webui",
+    "status": "down"
+  },
+  {
+    "url": "https://signal.holm.chat",
+    "cat": "comms",
+    "name": "Signal Web",
+    "desc": "Signal-relay frontend",
+    "ns": "signal-web",
+    "status": "ok"
+  },
+  {
+    "url": "https://snikket.holm.chat",
+    "cat": "comms",
+    "name": "Snikket",
+    "desc": "XMPP admin",
+    "ns": "snikket",
+    "status": "ok"
+  },
+  {
+    "url": "https://solar.holm.team",
+    "cat": "tools",
+    "name": "Solar",
+    "desc": "solar app",
+    "ns": "solar",
+    "status": "ok"
+  },
+  {
+    "url": "https://sso.holm.team",
+    "cat": "auth",
+    "name": "Sso",
+    "desc": "authelia app",
+    "ns": "authelia",
+    "status": "ok"
+  },
+  {
+    "url": "https://status.holm.team",
+    "cat": "infra",
+    "name": "Status",
+    "desc": "holm-cloud app",
+    "ns": "holm-cloud",
+    "status": "ok"
+  },
+  {
+    "url": "https://stella.holm.team",
+    "cat": "world",
+    "name": "Stella",
+    "desc": "Star map",
+    "ns": "stella",
+    "status": "down"
+  },
+  {
+    "url": "https://studio.holm.community",
+    "cat": "fediverse",
+    "name": "Studio",
+    "desc": "fedi-discover app",
+    "ns": "fedi-discover",
+    "status": "ok"
+  },
+  {
+    "url": "https://tools.holm.team",
+    "cat": "tools",
+    "name": "Tools",
+    "desc": "tools app",
+    "ns": "tools",
+    "status": "ok"
+  },
+  {
+    "url": "https://translate.holm.community",
+    "cat": "fediverse",
+    "name": "Translate",
+    "desc": "mastodon app",
+    "ns": "mastodon",
+    "status": "ok"
+  },
+  {
+    "url": "https://tube.holm.team",
+    "cat": "media",
+    "name": "TubeArchivist",
+    "desc": "YouTube archive",
+    "ns": "tubearchivist",
+    "status": "ok"
+  },
+  {
+    "url": "https://umami.holm.community",
+    "cat": "infra",
+    "name": "Umami",
+    "desc": "Analytics",
+    "ns": "umami",
+    "status": "ok"
+  },
+  {
+    "url": "https://uptime.holm.team",
+    "cat": "infra",
+    "name": "Uptime Kuma",
+    "desc": "Uptime monitor",
+    "ns": "uptime-kuma",
+    "status": "down"
+  },
+  {
+    "url": "https://v2a.holm.chat",
+    "cat": "tools",
+    "name": "Video \u2192 Audio",
+    "desc": "MP4 \u2192 MP3 converter",
+    "ns": "video-to-audio-converter",
+    "status": "ok"
+  },
+  {
+    "url": "https://vault.holm.team",
+    "cat": "auth",
+    "name": "Vault",
+    "desc": "vaultwarden app",
+    "ns": "vaultwarden",
+    "status": "ok"
+  },
+  {
+    "url": "https://veteran.holm.team",
+    "cat": "tools",
+    "name": "Veteran",
+    "desc": "veteran app",
+    "ns": "veteran",
+    "status": "ok"
+  },
+  {
+    "url": "https://wanderer.holm.team",
+    "cat": "tools",
+    "name": "Wanderer",
+    "desc": "GPS track viewer",
+    "ns": "wanderer",
+    "status": "ok"
+  },
+  {
+    "url": "https://water.holm.team",
+    "cat": "tools",
+    "name": "Water",
+    "desc": "water app",
+    "ns": "water",
+    "status": "ok"
+  },
+  {
+    "url": "https://workbook.holm.team",
+    "cat": "tools",
+    "name": "Workbook",
+    "desc": "Workbook app",
+    "ns": "workbook",
+    "status": "ok"
+  },
+  {
+    "url": "https://xray.holm.team",
+    "cat": "tools",
+    "name": "Xray",
+    "desc": "Inspector",
+    "ns": "xray",
     "status": "ok"
   }
 ]
@@ -578,7 +1092,7 @@ function render(filter) {
     if (!items) continue;
     items.sort((a, b) => a.name.localeCompare(b.name));
     const visible = items.filter(s =>
-      !f || s.name.toLowerCase().includes(f) || s.desc.toLowerCase().includes(f) || s.url.toLowerCase().includes(f)
+      !f || s.name.toLowerCase().includes(f) || s.desc.toLowerCase().includes(f) || s.url.toLowerCase().includes(f) || (s.ns || '').includes(f)
     );
     if (!visible.length) continue;
     shown += visible.length;
@@ -593,7 +1107,7 @@ function render(filter) {
             <span class="name">${s.name}</span>
           </div>
           <div class="desc">${s.desc}</div>
-          <div class="host">${host(s.url)}</div>
+          <div class="host">${host(s.url)}${s.ns ? ' · ' + s.ns : ''}${s.status === 'down' ? ' · down' : ''}</div>
         </a>`).join('')}</div>`;
     content.appendChild(sec);
   }

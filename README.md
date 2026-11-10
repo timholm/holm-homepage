@@ -1,6 +1,6 @@
 # holm-homepage
 
-Service directory for the Holm cluster. Deployed to https://holm.team via Cloudflare Tunnel; gated behind Keycloak SSO.
+Service directory for the Holm cluster. Deployed to https://index.holm.team via Cloudflare Tunnel; gated behind Holm SSO (Authelia, group `admins`). holm.team's "Log in" button links here.
 
 ## Layout
 
@@ -10,7 +10,7 @@ Service directory for the Holm cluster. Deployed to https://holm.team via Cloudf
 
 ## Edit the page
 
-Edit `site/index.html` (sites list is at the bottom inside the `SITES` array). Commit and push — ArgoCD will pick up the change on next sync and recreate the ConfigMap; the new RS hash forces a rolling restart.
+The app list is generated from the cluster: `set -a; . ~/.config/holm/env; set +a; python3 sync-sites.py` reads the Cloudflare tunnel hostnames and HTTPRoutes/Ingresses, marks apps with no running pods (or no answer) as down, keeps names/descriptions already in `site/sites.json`, and rewrites the `SITES` array in `k8s/index.html`. To rename or describe an app, edit `site/sites.json` and re-run. Commit and push; Argo CD recreates the ConfigMap and rolls the pods.
 
 ## Secrets (not in git)
 
