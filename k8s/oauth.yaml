@@ -19,13 +19,13 @@ spec:
         # 2026-07-01: holm.team root now serves CryptPad; homepage's canonical
         # URL is index.holm.team (tunnel + DNS already in place).
         - --redirect-url=https://index.holm.team/oauth2/callback
-        - --oidc-issuer-url=https://sso.holm.team
+        - --oidc-issuer-url=https://id.holm.team/application/o/homepage/
         - --provider=oidc
         - --skip-oidc-discovery=true # no network at boot: a down edge must not crashloop the proxy
-        - --login-url=https://sso.holm.team/api/oidc/authorization
-        - --redeem-url=https://sso.holm.team/api/oidc/token
-        - --oidc-jwks-url=https://sso.holm.team/jwks.json
-        - --profile-url=https://sso.holm.team/api/oidc/userinfo
+        - --login-url=https://id.holm.team/application/o/authorize/
+        - --redeem-url=https://id.holm.team/application/o/token/
+        - --oidc-jwks-url=https://id.holm.team/application/o/homepage/jwks/
+        - --profile-url=https://id.holm.team/application/o/userinfo/
         # Skip boot-time OIDC discovery: it hits the issuer URL through the
         # Cloudflare tunnel and kills the pod with 530/error 1033 any time the
         # tunnel is down (this crashlooped 850+ times). Only the browser leg
@@ -39,7 +39,7 @@ spec:
         - --whitelist-domain=.holm.team
         - --email-domain=*
         - --scope=openid email profile groups
-        - --allowed-group=admins # LLDAP security group, via Authelia
+        - --allowed-group=holm-admins # Holm ID (authentik) group
         - --skip-provider-button=true
         - --pass-access-token=true
         - --pass-authorization-header=true

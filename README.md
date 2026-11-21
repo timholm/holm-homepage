@@ -1,6 +1,6 @@
 # holm-homepage
 
-Service directory for the Holm cluster. Deployed to https://index.holm.team via Cloudflare Tunnel; gated behind Holm SSO (Authelia, group `admins`). holm.team's "Log in" button links here.
+Service directory for the Holm cluster. Deployed to https://index.holm.team via Cloudflare Tunnel; gated behind Holm ID (authentik at id.holm.team, group `holm-admins`). holm.team's "Log in" button links here.
 
 ## Layout
 
